@@ -55,8 +55,13 @@ public class frmDevolucionInternal extends javax.swing.JInternalFrame {
 
                     // Calcular multa tentativa
                     PrestamoNegocio negocio = new PrestamoNegocio();
-                    double multa = negocio.calcularMulta(prestamoSeleccionado.getFechaDevolucionEsperada(), 5.00);
-                    lblMulta.setText(String.format("S/ %.2f", multa));
+                    try {
+                        double multa = negocio.calcularMulta(prestamoSeleccionado.getFechaDevolucionEsperada(),
+                                negocio.obtenerTarifaMultaDiaria());
+                        lblMulta.setText(String.format("S/ %.2f", multa));
+                    } catch (DAOException ex) {
+                        lblMulta.setText("S/ --");
+                    }
                 }
             }
         });

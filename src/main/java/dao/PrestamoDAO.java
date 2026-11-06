@@ -106,7 +106,7 @@ public class PrestamoDAO {
                    + "l.id_lector, l.dni, l.nombres, l.apellidos "
                    + "FROM prestamo p "
                    + "INNER JOIN lector l ON p.id_lector = l.id_lector "
-                   + "WHERE l.dni = ? AND p.estado IN ('Pendiente', 'Con Retraso') "
+                   + "WHERE l.dni = ? AND p.fecha_devolucion_real IS NULL "
                    + "ORDER BY p.fecha_prestamo DESC";
 
         try (Connection con = Conexion.getInstancia().getConexion();

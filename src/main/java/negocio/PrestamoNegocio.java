@@ -74,6 +74,11 @@ public class PrestamoNegocio {
         return prestamoDAO.listarDetallesPorPrestamo(idPrestamo);
     }
 
+    /** Tarifa diaria de multa definida en Configuración (MULTA_DIARIA_SOLES). */
+    public double obtenerTarifaMultaDiaria() throws DAOException {
+        return new ConfiguracionNegocio().obtenerMultaDiaria();
+    }
+
     public double calcularMulta(Date fechaDevEsperada, double tarifaDiariaSoles) {
         Date hoy = new Date();
         if (hoy.after(fechaDevEsperada)) {
@@ -91,7 +96,7 @@ public class PrestamoNegocio {
             throw new NegocioException("Debe seleccionar un préstamo activo para procesar la devolución.");
         }
 
-        double multa = calcularMulta(fechaDevEsperada, 5.00); // S/ 5.00 tarifa diaria
+        double multa = calcularMulta(fechaDevEsperada, obtenerTarifaMultaDiaria());
         String estadoFinal = (multa > 0) ? "Con Retraso" : "Devuelto";
 
         prestamoDAO.registrarDevolucionTransaccional(idPrestamo, multa, estadoFinal);
