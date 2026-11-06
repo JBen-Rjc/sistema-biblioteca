@@ -1,0 +1,5 @@
+# Copia este archivo como bd.properties (en la misma carpeta) y completa tus datos.
+# bd.properties está en .gitignore: nunca se sube al repositorio.
+bd.url=jdbc:postgresql://localhost:5432/bd_biblioteca
+bd.usuario=postgres
+bd.clave=TU_CLAVE_DE_POSTGRES

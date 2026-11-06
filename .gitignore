@@ -1,0 +1,21 @@
+# Compilados de Maven
+target/
+
+# Credenciales locales (usar bd.properties.example como plantilla)
+bd.properties
+.env
+
+# IDEs
+nbproject/private/
+nbactions.xml
+nb-configuration.xml
+.idea/
+*.iml
+.vscode/
+
+# Sistema operativo
+Thumbs.db
+.DS_Store
+
+# Reportes generados
+*.pdf
